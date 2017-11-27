@@ -37,7 +37,21 @@ def createRole(name: str, policies: List[Policy]) -> Role:
              , AssumeRolePolicyDocument = self._assumePolicy
              , Policies = policies
              )
-
+def oneClickCreateLogsPolicy(self) -> Policy:
+  statements = [
+    awacs.aws.Statement(
+        Action = [ awacs.logs.CreateLogGroup
+                 , awacs.logs.CreateLogStream
+                 , awacs.logs.PutLogEvents
+                 ]
+      , Resource = [ "arn:aws:logs:*:*:*" ]
+      , Effect = awacs.aws.Allow
+      )
+  policyDoc = awacs.aws.Policy( Statement = statements )
+  return Policy(
+        PolicyName = Sub("OneClickCreateLogsPolicy-${AWS::StackName}")
+      , PolicyDocument = policyDoc
+      )
 
 def oneClickCodePipeServicePolicy() -> Policy:
   statements = [
