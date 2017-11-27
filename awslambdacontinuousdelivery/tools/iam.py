@@ -37,7 +37,7 @@ def createRole(name: str, policies: List[Policy]) -> Role:
              , AssumeRolePolicyDocument = self._assumePolicy
              , Policies = policies
              )
-def oneClickCreateLogsPolicy(self) -> Policy:
+def oneClickCreateLogsPolicy() -> Policy:
   statements = [
     awacs.aws.Statement(
         Action = [ awacs.logs.CreateLogGroup
