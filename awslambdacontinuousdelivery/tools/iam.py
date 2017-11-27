@@ -47,6 +47,7 @@ def oneClickCreateLogsPolicy(self) -> Policy:
       , Resource = [ "arn:aws:logs:*:*:*" ]
       , Effect = awacs.aws.Allow
       )
+    ]
   policyDoc = awacs.aws.Policy( Statement = statements )
   return Policy(
         PolicyName = Sub("OneClickCreateLogsPolicy-${AWS::StackName}")
