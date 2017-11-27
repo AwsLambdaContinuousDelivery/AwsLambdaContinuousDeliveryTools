@@ -18,6 +18,7 @@ import awacs.iam
 import awacs.ecs
 import awacs.elasticbeanstalk
 import awacs.elasticloadbalancing
+import awacs.logs
 import awacs.opsworks
 import awacs.s3
 import awacs.sns
