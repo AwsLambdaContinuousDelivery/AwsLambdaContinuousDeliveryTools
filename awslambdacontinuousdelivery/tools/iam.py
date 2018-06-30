@@ -25,6 +25,15 @@ import awacs.sns
 import awacs.sqs
 import awacs.rds
 
+def createCodepipelineRole(name: str) -> Role:
+  assume = defaultAssumeRolePolicyDocument("codepipeline.amazonaws.com")
+  policy = oneClickCodePipeServicePolicy()
+  return Role( alphanum(name)
+             , RoleName = Sub("${AWS::StackName}"+alphanum(name))
+             , AssumeRolePolicyDocument = assume
+             , Policies = [policy]
+             )
+
 def defaultAssumeRolePolicyDocument(service: str) -> Policy:
   statement = Statement( Action = [AssumeRole]
                        , Effect = Allow
